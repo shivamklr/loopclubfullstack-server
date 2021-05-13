@@ -5,13 +5,20 @@ const { errorResponse } = require("../utils/errorResponse");
 // POST /api/user/
 router.post("/", async (req, res) => {
     //TODO: validate user email
-    //TODO: return error if already exists
-    const { email } = req.body;
+
     try {
-        const user = await User.find({ email });
-        return res.status(200).json({ data: { user } });
+        const {
+            data: { email },
+        } = req.body;
+        let user = await User.findOne({ email }).lean();
+        if (user) {
+            // user found in db
+            throw new Error("USER ALREADY EXIST");
+        }
+        user = await User.create({ email }).lean();
+        return res.status(201).json({ data: { user } });
     } catch (error) {
-        return errorResponse(res, error, 422, "POST REQUEST FAILED");
+        return errorResponse(res, error, 422, "COULD NOT CREATE NEW USER");
     }
 });
 module.exports = router;
