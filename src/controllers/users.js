@@ -3,7 +3,6 @@ const User = require("../models/User");
 
 // add a new user to the database
 module.exports.addUser = async (req, res) => {
-    //TODO: validate user email
     try {
         const {
             data: { email },
@@ -16,7 +15,7 @@ module.exports.addUser = async (req, res) => {
         user = await User.create({ email });
         return res.status(201).json({ data: { user } });
     } catch (error) {
-        return errorResponse(res, error, 422, "COULD NOT CREATE NEW USER");
+        return errorResponse(res, error, 422, error.message);
     }
 };
 
