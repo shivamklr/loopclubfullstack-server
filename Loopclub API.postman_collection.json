@@ -1,0 +1,60 @@
+{
+	"info": {
+		"_postman_id": "7d8f1791-7055-4fee-8194-fa23bac3344d",
+		"name": "Loopclub API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\":{\n        \"email\":\"example2GAMIL.cOM\"\n\n}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/user",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/api/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:4040"
+		}
+	]
+}
