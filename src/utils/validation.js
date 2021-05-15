@@ -4,11 +4,11 @@ module.exports.isEmail = (req, res, next) => {
     try {
         const email = req.body.data.email;
         if (!validator.isEmail(email)) {
-            throw new Error("INVALID EMAIL");
+            throw new Error("EMAIL VALIDATION FAILED");
         }
         next();
     } catch (e) {
-        return errorResponse(res, e, 400, e.message);
+        return errorResponse(res, e, 400, "INVALID EMAIL");
     }
 };
 module.exports.sanitizeEmail = (req, res, next) => {
